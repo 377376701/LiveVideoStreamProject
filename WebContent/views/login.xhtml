@@ -8,15 +8,10 @@
 <h:head>
 
 <h:form>            
-    <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
-        Giriş İçin Tıklayınız..
-    </h:outputLink>
-    
-    
- 
+     
     <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
  
-    <p:dialog header="Login" widgetVar="dlg" resizable="false">
+    <p:dialog closable="false" header="Login" widgetVar="dlg" resizable="false">
         <h:panelGrid columns="2" cellpadding="5">
             <h:outputLabel for="username" value="Username:" />
             <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
@@ -39,9 +34,13 @@
         }
         else {
             PF('dlg').hide();
-            $('#loginLink').fadeOut();
+            window.location.href = "/LiveVideoStreamProject/faces/views/home.xhtml"
         }
     }
+    $( document ).ready(function() {
+    	 PF('dlg').show();
+    });
+   
 </script>
 
 </h:head>
