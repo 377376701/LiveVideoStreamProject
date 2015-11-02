@@ -30,7 +30,12 @@
     </h:panelGrid>
     <p:separator />
     
-    
+    <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5" columnClasses="label, value">
+               
+        <p:outputLabel for="basic" value="Yayınlanacak kanal ismi:" />
+		<p:inputText />
+	    <p:commandButton value="Yayınla" oncomplete="window.location.href='/LiveVideoStreamProject/faces/views/broadcast.xhtml'" icon="ui-icon-check" />
+    </h:panelGrid>
  
 
 </h:form>

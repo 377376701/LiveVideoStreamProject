@@ -5,9 +5,16 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"	
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
-<h:head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<h:head>
 
+<h:form>
+<p:breadCrumb>
+    <p:menuitem value="Categories" url="/faces/views/home.xhtml" />
+    <p:menuitem value="Yayınla" url="/faces/views/broadcast.xhtml" />
+</p:breadCrumb>
+<br/><br/>
+</h:form>
 
 <div>
               <video controls="" id="live" width="640" height="480" autoplay="autoplay"
