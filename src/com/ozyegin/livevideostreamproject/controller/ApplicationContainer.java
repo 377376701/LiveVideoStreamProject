@@ -7,6 +7,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import org.primefaces.context.RequestContext;
 
 import java.util.ArrayList;
 
@@ -28,15 +29,21 @@ public class ApplicationContainer {
 
 	public void createChannel(ActionEvent actionEvent) {
 
+		RequestContext context = RequestContext.getCurrentInstance();
+		boolean success = false;
+
 		if (uniqueCheck(newChannelName)) {
 			Channel c2 = new Channel();
 			c2.setChannelName(newChannelName);
 			channelList.add(c2);
+			success = true;
 		} else {
-			addMessage(newChannelName + "isimli kanal mevcut!!");
+			success = false;
+			addMessage(newChannelName + " isimli kanal mevcut!!");
 		}
 
 		newChannelName = null;
+		context.addCallbackParam("success", success);
 	}
 
 	public void addMessage(String summary) {

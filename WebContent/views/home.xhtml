@@ -8,6 +8,7 @@
 <h:head>
 
 <h:form>
+ <p:growl id="growl" sticky="true" life="3000" />
 <p:breadCrumb>
     <p:menuitem value="Categories" url="/faces/views/home.xhtml" />
 </p:breadCrumb>
@@ -26,10 +27,22 @@
                
         <p:outputLabel for="basic" value="Yayınlanacak kanal ismi:" />
 		<p:inputText value="#{applicationContainer.newChannelName}" />
-	    <p:commandButton actionListener="#{applicationContainer.createChannel}" value="Yayınla" oncomplete="window.location.href='/LiveVideoStreamProject/faces/views/broadcast.xhtml'" icon="ui-icon-check" />
+	    <p:commandButton actionListener="#{applicationContainer.createChannel}" update="growl" value="Yayınla" oncomplete="handleLoginRequest(xhr, status, args)" icon="ui-icon-check" />
     </h:panelGrid>
  
 
 </h:form>
+
+<script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+        if(args.validationFailed || !args.success) {
+    }
+        else {
+            window.location.href = "/LiveVideoStreamProject/faces/views/broadcast.xhtml"
+        }
+    }
+
+   
+</script>
 </h:head>
 </html>
