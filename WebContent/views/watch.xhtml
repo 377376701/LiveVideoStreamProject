@@ -11,12 +11,10 @@
 <h:form>
 <p:breadCrumb>
     <p:menuitem value="Categories" url="/faces/views/home.xhtml" />
-    <p:menuitem value="İzle" url="/faces/views/watch.xhtml" />
+    <p:menuitem value="İzle (#{channelView.selectedChannel})" url="/faces/views/watch.xhtml" />
 </p:breadCrumb>
 <br/><br/>
 </h:form>
-
-
 
 <div>
               <video controls="" id="live" width="640" height="480" autoplay="autoplay"
