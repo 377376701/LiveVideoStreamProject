@@ -16,25 +16,27 @@
 <br/><br/>
 </h:form>
 
-<div>
-              <video controls="" id="live" width="640" height="480" autoplay="autoplay"
-                     style="display: inline;" ></video>
-</div>
 
-<script type="text/javascript">
-             var video = $("#live").get()[0];
-             var options = {
-                     "video" : true
-              };
-             
-              // use the chrome specific GetUserMedia function
-              navigator.webkitGetUserMedia(options, function(stream) {
-                     video.src = webkitURL.createObjectURL(stream);
-              }, function(err) {
-                     console.log("Unable to get video stream!")
-              })
-             
-</script>
+
+
+       <script type="text/javascript">
+              var ws = new WebSocket("ws://localhost:8080/LiveVideoStreamProject/livevideo");
+              ws.onmessage = function(msg) {
+                     var target = document.getElementById("target");
+                     url = window.webkitURL.createObjectURL(msg.data);
+                     target.onload = function() {
+                           window.webkitURL.revokeObjectURL(url);
+                     };
+                     target.src = url;
+              }
+       </script>
+       <div style="visibility: hidden; width: 0; height: 0;">
+              <canvas width="320" id="canvas" height="240"></canvas>
+       </div>
+
+       <div>
+              <img id="target" style="display: inline;" />
+       </div>
 
 </h:head>
     <p:commandButton value="logout" oncomplete="window.location.href='/LiveVideoStreamProject/faces/views/login.xhtml'"/>

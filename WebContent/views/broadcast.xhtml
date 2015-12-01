@@ -16,21 +16,19 @@
 <br/><br/>
 </h:form>
 
-
-
 <div>
-              <video controls="" id="live" width="640" height="480" autoplay="autoplay"
-                     style="display: inline;" ></video>
-              <canvas width="640" id="canvas" height="480" style="display: inline;"></canvas>
-</div>
+              <video id="live" width="320" height="240" autoplay="autoplay"
+                     style="display: inline;"></video>
+              <canvas width="320" id="canvas" height="240" style="display: inline;"></canvas>
+       </div>
 
 <script type="text/javascript">
-             var video = $("#live").get()[0];
-             var canvas = $("#canvas");
-             var ctx = canvas.get()[0].getContext('2d');
-             var options = {
-                     "video" : true
-              };
+				var video = $("#live").get()[0];
+				var canvas = $("#canvas");
+				var ctx = canvas.get()[0].getContext('2d');
+				 var options = {
+				        "video" : true
+				 };
              
               // use the chrome specific GetUserMedia function
               navigator.webkitGetUserMedia(options, function(stream) {
@@ -38,17 +36,25 @@
               }, function(err) {
                      console.log("Unable to get video stream!")
               })
-             
-                timer = setInterval(
-            function () {
-                ctx.drawImage(video, 0, 0, 640, 480);
-                var data = canvas.get()[0].toDataURL('image/jpeg', 1.0);
-                newblob = convertToBinary(data);
-          }, 100);
+              
+              
+var ws = new WebSocket("ws://localhost:8080/LiveVideoStreamProject/livevideo");
+                  ws.onopen = function () {
+                            console.log("Openened connection to websocket");
+                  }
+                                  
+                    timer = setInterval(
+                        function () {
+                            ctx.drawImage(video, 0, 0, 320, 240);
+                            var data = canvas.get()[0].toDataURL('image/jpeg', 1.0);
+                            newblob = convertToBinary(data);
+                            ws.send(newblob);
+                        }, 250);
    
              
               function convertToBinary (dataURI) {
-                                   // doesn't handle URLEncoded DataURIs
+                  // convert base64 to raw binary data held in a string
+                  // doesn't handle URLEncoded DataURIs
                   var byteString = atob(dataURI.split(',')[1]);
 
                   // separate out the mime component
@@ -57,7 +63,7 @@
                   // write the bytes of the string to an ArrayBuffer
                   var ab = new ArrayBuffer(byteString.length);
                   var ia = new Uint8Array(ab);
-                  for (var i = 0; i &lt; byteString.length; i++) {
+                  for (var i = 0; i &lt; byteString.length; i++){
                       ia[i] = byteString.charCodeAt(i);
                   }
 
@@ -65,6 +71,7 @@
                   var bb = new Blob([ab]);
                   return bb;
               }
+             
 </script>
 
 </h:head>
