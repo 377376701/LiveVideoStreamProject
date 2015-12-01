@@ -49,7 +49,7 @@ var ws = new WebSocket("ws://"+window.location.host +"/LiveVideoStreamProject/li
                             var data = canvas.get()[0].toDataURL('image/jpeg', 1.0);
                             newblob = convertToBinary(data);
                             ws.send(newblob);
-                        }, 250);
+                        }, getParameterByName("screenFrequency") == "" ? 200 : getParameterByName("screenFrequency"));
    
              
               function convertToBinary (dataURI) {
@@ -71,6 +71,13 @@ var ws = new WebSocket("ws://"+window.location.host +"/LiveVideoStreamProject/li
                   var bb = new Blob([ab]);
                   return bb;
               }
+              
+              function getParameterByName(name) {
+            	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            	    var regex = new RegExp("[\\?&amp;]" + name + "=([^&amp;#]*)"),
+            	        results = regex.exec(location.search);
+            	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            	}
              
 </script>
 
