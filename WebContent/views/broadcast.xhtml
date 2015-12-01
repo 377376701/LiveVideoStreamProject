@@ -38,7 +38,7 @@
               })
               
               
-var ws = new WebSocket("ws://localhost:8080/LiveVideoStreamProject/livevideo");
+var ws = new WebSocket("ws://"+window.location.host +"/LiveVideoStreamProject/livevideo");
                   ws.onopen = function () {
                             console.log("Openened connection to websocket");
                   }
