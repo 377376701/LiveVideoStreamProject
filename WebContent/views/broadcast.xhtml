@@ -16,17 +16,16 @@
 <br/><br/>
 </h:form>
 
-<div>
-              <video id="live" width="320" height="240" autoplay="autoplay"
-                     style="display: inline;"></video>
-              <canvas width="320" id="canvas" height="240" style="display: inline;"></canvas>
-       </div>
+	<div>
+		<video id="live" width="320" height="240" autoplay="autoplay" style="display: inline;"></video>
+		<canvas width="320" id="canvas" height="240" style="display: inline;"></canvas>
+	</div>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 				var video = $("#live").get()[0];
 				var canvas = $("#canvas");
 				var ctx = canvas.get()[0].getContext('2d');
-				 var options = {
+				var options = {
 				        "video" : true
 				 };
              
@@ -38,7 +37,7 @@
               })
               
               
-var ws = new WebSocket("ws://"+window.location.host +"/LiveVideoStreamProject/livevideo");
+				var ws = new WebSocket("ws://"+window.location.host +"/LiveVideoStreamProject/livevideo?channelName="+ #{channelView.selectedChannel});
                   ws.onopen = function () {
                             console.log("Openened connection to websocket");
                   }
