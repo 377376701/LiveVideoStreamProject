@@ -27,7 +27,7 @@ public class LiveStream {
 
 	@OnMessage
 	public void processVideo(byte[] imageData, Session session) {
-		System.out.println("INsite process Video");
+		System.out.println("INsite process Video differentiate session");
 		try {
 			// Wrap a byte array into a buffer
 			ByteBuffer buf = ByteBuffer.wrap(imageData);
