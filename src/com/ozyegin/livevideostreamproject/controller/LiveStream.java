@@ -34,7 +34,10 @@ public class LiveStream {
 			// imageBuffers.add(buf);
 
 			for (Session session2 : sessions) {
-				session2.getBasicRemote().sendBinary(buf);
+				if(session.getQueryString().equals(session2.getQueryString())){
+					session2.getBasicRemote().sendBinary(buf);	
+					System.out.println("INsite process Video differentiate session1:"+session.getQueryString()+ "session2:"+session2.getQueryString());
+				}
 			}
 
 		} catch (Throwable ioe) {

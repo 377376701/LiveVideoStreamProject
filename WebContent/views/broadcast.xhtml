@@ -11,7 +11,7 @@
 <h:form>
 <p:breadCrumb>
     <p:menuitem value="Categories" url="/faces/views/home.xhtml" />
-    <p:menuitem value="Yayınla" url="/faces/views/broadcast.xhtml" />
+    <p:menuitem value="Yayınla (#{channelView.selectedChannel})" url="/faces/views/broadcast.xhtml" />
 </p:breadCrumb>
 <br/><br/>
 </h:form>
@@ -37,7 +37,7 @@
               })
               
               
-				var ws = new WebSocket("ws://"+window.location.host +"/LiveVideoStreamProject/livevideo?channelName="+ #{channelView.selectedChannel});
+				var ws = new WebSocket("ws://"+window.location.host +"/LiveVideoStreamProject/livevideo?channelName="+ "#{channelView.selectedChannel}");
                   ws.onopen = function () {
                             console.log("Openened connection to websocket");
                   }

@@ -37,6 +37,11 @@ public class ApplicationContainer {
 			c2.setChannelName(newChannelName);
 			channelList.add(c2);
 			success = true;
+			
+			FacesContext currentContext = FacesContext.getCurrentInstance();
+			ChannelView bean = (ChannelView) currentContext.getApplication().evaluateExpressionGet(currentContext, "#{channelView}", ChannelView.class);
+			bean.setSelectedChannel(newChannelName);
+			
 		} else {
 			success = false;
 			addMessage(newChannelName + " isimli kanal mevcut!!");

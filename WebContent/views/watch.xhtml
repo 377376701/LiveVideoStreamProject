@@ -20,7 +20,7 @@
 
 
        <script type="text/javascript">
-              var ws = new WebSocket("ws://"+window.location.host+"/LiveVideoStreamProject/livevideo?channelName=" + #{channelView.selectedChannel});
+              var ws = new WebSocket("ws://"+window.location.host+"/LiveVideoStreamProject/livevideo?channelName=" + "#{channelView.selectedChannel}");
               ws.onmessage = function(msg) {
                      var target = document.getElementById("target");
                      url = window.webkitURL.createObjectURL(msg.data);
