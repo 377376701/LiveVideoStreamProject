@@ -1,6 +1,9 @@
 package com.ozyegin.livevideostreamproject.controller;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import javax.websocket.EncodeException;
+import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -13,16 +16,20 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@ServerEndpoint("/livevideo")
+@ServerEndpoint(value = "/livevideo", configurator=ServletAwareConfig.class)
 public class LiveStream {
 
 	private static final Set<Session> sessions = Collections
 			.synchronizedSet(new HashSet<Session>());
+	
+	 private EndpointConfig config;
+	
 
 	@OnOpen
-	public void whenOpening(Session session) throws IOException, EncodeException {
+	public void whenOpening(Session session, EndpointConfig config) throws IOException, EncodeException {
 		session.setMaxBinaryMessageBufferSize(1024 * 512);
 		sessions.add(session);
+		this.config = config;
 	}
 
 	@OnMessage
@@ -49,6 +56,16 @@ public class LiveStream {
 	public void whenClosing(Session session) {
 		System.out.println("Goodbye !");
 		sessions.remove(session);
+		HttpSession httpSession = (HttpSession) config.getUserProperties().get("httpSession");
+		ChannelView bean = (ChannelView) httpSession.getAttribute("channelView");
+		String removeChannelName = bean.getSelectedChannel();
+		
+		ApplicationContainer bean2 = (ApplicationContainer) httpSession.getServletContext().getAttribute("applicationContainer");
+		
+		bean2.removeChannel(removeChannelName);
+		
+		
+		
 	}
 
 }

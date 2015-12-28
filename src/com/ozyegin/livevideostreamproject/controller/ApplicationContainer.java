@@ -22,6 +22,19 @@ public class ApplicationContainer {
 	public ArrayList<Channel> getChannelList() {
 		return channelList;
 	}
+	
+	public void removeChannel(String name) {
+		for(Channel c :channelList)
+		{
+			if(c.getChannelName().equals(name))
+			{
+				channelList.remove(c);
+				return;
+			}
+		}
+	
+	}
+
 
 	public void setChannelList(ArrayList<Channel> channelList) {
 		this.channelList = channelList;
