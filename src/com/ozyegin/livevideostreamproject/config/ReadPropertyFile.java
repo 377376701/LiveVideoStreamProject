@@ -1,4 +1,4 @@
-package com.ozyegin.livevideostreamproject.controller;
+package com.ozyegin.livevideostreamproject.config;
 
 import java.io.File;
 import java.io.FileInputStream;

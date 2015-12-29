@@ -48,7 +48,7 @@
                             var data = canvas.get()[0].toDataURL('image/jpeg', 1.0);
                             newblob = convertToBinary(data);
                             ws.send(newblob);
-                        }, getParameterByName("screenFrequency") == "" ? 200 : getParameterByName("screenFrequency"));
+                        }, "#{applicationContainer.drawFrequency}");
    
              
               function convertToBinary (dataURI) {

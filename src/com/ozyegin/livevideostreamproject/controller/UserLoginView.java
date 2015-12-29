@@ -1,5 +1,7 @@
 package com.ozyegin.livevideostreamproject.controller;
 
+import com.ozyegin.livevideostreamproject.config.ReadPropertyFile;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;

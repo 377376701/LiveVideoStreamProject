@@ -1,4 +1,4 @@
-package com.ozyegin.livevideostreamproject.controller;
+package com.ozyegin.livevideostreamproject.config;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.HandshakeResponse;

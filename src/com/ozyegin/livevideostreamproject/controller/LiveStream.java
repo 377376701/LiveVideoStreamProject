@@ -1,5 +1,7 @@
 package com.ozyegin.livevideostreamproject.controller;
 
+import com.ozyegin.livevideostreamproject.config.ServletAwareConfig;
+
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import javax.websocket.EncodeException;
