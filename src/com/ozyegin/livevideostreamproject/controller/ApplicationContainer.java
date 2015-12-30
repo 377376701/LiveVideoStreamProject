@@ -1,7 +1,6 @@
 package com.ozyegin.livevideostreamproject.controller;
 
 import com.ozyegin.livevideostreamproject.config.ReadPropertyFile;
-
 import com.ozyegin.livevideostreamproject.model.Channel;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -54,7 +53,7 @@ public class ApplicationContainer {
 
 		if (channelList.size() >= this.maxNumber) {
 			success = false;
-			addMessage("Daha fazka yeni kanal yaratamazsınız!!");
+			addMessage("Daha fazla yeni kanal yaratılamaz!!");
 		}
 		else if (uniqueCheck(newChannelName)) {
 			Channel c2 = new Channel();
